@@ -19,3 +19,13 @@
 
 1. 考虑用QT来重构其UI
 
+ ## BUG
+
+game_end     22 
+
+```c
+  landmine_around_num += (int)(list_hide[y + i][x + j]-'0')
+```
+
+- 有bug，但原因不明，猜测是由于内存越界。
+- 明天修(记录时间2024.5.13)。

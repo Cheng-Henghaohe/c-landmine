@@ -2,7 +2,7 @@
 
 int digit_number(int);
 
-void game_start()
+void game_start() //给出list二维数组
 {
     int line, column;
     char **list;
@@ -33,6 +33,13 @@ void game_start()
         }
     }
 
+    game_output(line, column, list);
+
+    game_middle(line + 2, column + 2, list);
+}
+
+void game_output(int line, int column, char **list)
+{
     printf("    ");                   // output//写判断语句吗，让其*阵输出对行
     for (int j = 0; j <= column; j++) //第一行 数字行
     {
@@ -86,38 +93,7 @@ void game_start()
 
         printf("\n");
     }
-
-    game_middle(line+2,column+2);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    free(list);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 int digit_number(int number)
 {

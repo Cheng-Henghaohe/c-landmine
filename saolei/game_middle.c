@@ -1,6 +1,6 @@
 #include "all.h"
 
-void game_middle(int line, int column)
+void game_middle(int line, int column,char **list)//给出list_hide二维数组
 {
     char **list_hide;
     list_hide = (char **)malloc(line * sizeof(char *));
@@ -27,48 +27,27 @@ void game_middle(int line, int column)
         }
     }
 
-    int landmine_number;//生成雷的坐标
+    int landmine_number; //生成雷的坐标
     landmine_number = 0.3 * (line * column);
     int landmine_xy[2][landmine_number];
     srand((unsigned)time(NULL));
 
-    for (int i = 0; i < landmine_number; i++)//x，横为x
+    for (int i = 0; i < landmine_number; i++) // x，横为x
     {
         landmine_xy[0][i] = rand() % (column - 2);
     }
 
-    for (int i = 0; i < landmine_number; i++)//y 竖为y
+    for (int i = 0; i < landmine_number; i++) // y 竖为y
     {
         landmine_xy[1][i] = rand() % (line - 2);
     }
-    int landmine_y,landmine_x;
-    for(int i=0;i<landmine_number;i++)
+    int landmine_y, landmine_x;
+    for (int i = 0; i < landmine_number; i++)
     {
-        
-        landmine_y=landmine_xy[1][i]+1;
-        landmine_x=landmine_xy[0][i]+1;
-        list_hide[landmine_y][landmine_x]='1';
+
+        landmine_y = landmine_xy[1][i] + 1;
+        landmine_x = landmine_xy[0][i] + 1;
+        list_hide[landmine_y][landmine_x] = '1';
     }
-
-
-
-
-    //debug
-    for(int i=0;i<line;i++)
-    {
-        for(int j=0;j<column;j++)
-        {
-            printf("%c",list_hide[i][j]);
-        }
-    }
-    free(list_hide);
-    
-    
-
-
-
-
-
-
-
-}    
+    game_end(line-2,column-2,list,list_hide);
+}
