@@ -1,0 +1,20 @@
+{
+    "files.associations": {
+        "*.h": "c",
+        "*.md": "markdown"
+    },
+    "ego.power-tools.user": {
+        "buttons": [
+            {
+                "text": "Typora",
+                "tooltip": "在Typora编辑器中打开文件",
+                "action": {
+                    "type": "command",
+                    "command": "typora"
+                },
+                "onEditorCreated": "if ($vs.window.activeTextEditor.document.languageId === 'markdown') { $v['button'].enable(); $v['button'].color = ''; } else { $v['button'].disable(); $v['button'].color = 'grey';}",
+                "onEditorChanged": "if ($vs.window.activeTextEditor.document.languageId === 'markdown') { $v['button'].enable(); $v['button'].color = ''; } else { $v['button'].disable(); $v['button'].color = 'grey';}"
+            }
+        ]
+    }
+}
