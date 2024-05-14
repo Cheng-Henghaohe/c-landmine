@@ -11,6 +11,7 @@ int main()
         start();
         scanf("%d", &in);
         switch (in)
+        
         {
         case 2:
             break;

@@ -9,7 +9,8 @@
                 "-g",
                 "${fileDirname}\\*.c",
                 "-o",
-                "${fileDirname}\\bin\\${fileBasenameNoExtension}.exe",
+                //"${fileDirname}\\bin\\${fileBasenameNoExtension}.exe",
+                "${fileDirname}\\bin\\main.exe",
                 "-fexec-charset=GBK",
             ],
             "options": {

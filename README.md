@@ -21,11 +21,30 @@
 
  ## BUG
 
-game_end     22 
+1. *game_end     22(已修复)* 
 
 ```c
   landmine_around_num += (int)(list_hide[y + i][x + j]-'0')
 ```
 
-- 有bug，但原因不明，猜测是由于内存越界。
-- 明天修(记录时间2024.5.13)。
+- *有bug，但原因不明，猜测是由于内存越界。*
+- *明天修(记录时间2024.5.13)。*
+
+2. 循环自动找出给定点的周围的周围雷数为0的点自动显示的函数有问题，无法正确运行
+
+   ```c
+   game_end.c/void recursive_LANumber(int x, int y, int line, int column, char **list_hide, char **list)有问题。
+   ```
+
+   - 待修复
+   - 明天修
+   - 记录时间(2024.5.14)
+
+   
+
+   
+
+   
+
+
+
