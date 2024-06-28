@@ -17,7 +17,6 @@ int main()
             break;
         case 1:
             game();
-            system("pause");
             break;
         default:
             printf("输入错误，请重新输入");

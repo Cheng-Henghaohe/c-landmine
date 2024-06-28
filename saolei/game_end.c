@@ -1,6 +1,7 @@
 #include "all.h"
+#include "BFS.h"
 
-void game_end(int line, int column, char **list, char **list_hide)
+void game_end(int line, int column, char **list, char **list_hide,char **Lanumber_list)
 {
     while (1)
     {
@@ -21,9 +22,10 @@ void game_end(int line, int column, char **list, char **list_hide)
         
         landmine_around_num=landmine_around_number(x, y, line, column, list_hide);
         list[y - 1][x - 1] = (char)(landmine_around_num + '0');
-        recursive_LANumber(x, y, line, column, list_hide, list);
+        Queue_LAnumber(x, y, line, column, list_hide, list,Lanumber_list);
         game_output(line, column, list);
 
+        //胜利的判断条件
         int total_landmines = 0;
         int total_uncovered = 0;
 
@@ -65,7 +67,7 @@ int landmine_around_number(int x, int y, int line, int column, char **list_hide)
         {
             if (x + j < 0 || y + i < 0 || x + j >= column || y + i >= line)
             {
-                break;
+                continue;
             }
             landmine_around_num += (int)(list_hide[y + i][x + j] - '0');
         }
@@ -73,7 +75,47 @@ int landmine_around_number(int x, int y, int line, int column, char **list_hide)
     return landmine_around_num;
 }
 
-void recursive_LANumber(int x, int y, int line, int column, char **list_hide, char **list) //递归计算周围没有雷的地方，并自动点亮
+void Queue_LAnumber(int x, int y, int line, int column, char **list_hide, char **list,char **Lanumber_list)
+{
+    int xy[0];
+    Queue Q;
+    Queue *q=&Q;
+    initQueue(q);
+    for (int i = -1; i < 2; i++)
+    {
+        for (int j = -1; j < 2; j++)
+        {
+            if (x + j < 0 || y + i < 0 || x + j >= column || y + i >= line||Lanumber_list[y+i][x+j]!=o)
+            {
+                continue;
+            }
+            xy[0]=y+i;
+            xy[1]=x+j;
+            enQueue(q,xy);
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* void recursive_LANumber(int x, int y, int line, int column, char **list_hide, char **list) //递归计算周围没有雷的地方，并自动点亮
 {
 
     for (int i = -1; i < 2; i++)
@@ -82,7 +124,7 @@ void recursive_LANumber(int x, int y, int line, int column, char **list_hide, ch
         {
             if (x + j < 1 || y + i < 1 || x + j >= column + 1 || y + i >= line + 1)
             {
-                break;
+                continue;
             }
             int landmine_around_num = 0;
             landmine_around_num = landmine_around_number(x + i, y + j, line, column, list_hide);
@@ -97,4 +139,4 @@ void recursive_LANumber(int x, int y, int line, int column, char **list_hide, ch
             }
         }
     }
-}
+} */
