@@ -1,6 +1,8 @@
 #include "all.h"
 #include "BFS.h"
 
+
+
 void game_end(int line, int column, char **list, char **list_hide,char **Lanumber_list)
 {
     while (1)
@@ -12,7 +14,7 @@ void game_end(int line, int column, char **list, char **list_hide,char **Lanumbe
         {
             printf("你踩到雷了\n");
             list[y - 1][x - 1] = '!';
-            game_output(line, column, list);
+            game_output();
             free(list);
             free(list_hide);
             system("pause");
@@ -23,7 +25,7 @@ void game_end(int line, int column, char **list, char **list_hide,char **Lanumbe
         landmine_around_num=landmine_around_number(x, y, line, column, list_hide);
         list[y - 1][x - 1] = (char)(landmine_around_num + '0');
         Queue_LAnumber(x, y, line, column, list_hide, list,Lanumber_list);
-        game_output(line, column, list);
+        game_output();
 
         //胜利的判断条件
         int total_landmines = 0;

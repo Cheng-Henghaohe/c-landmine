@@ -1,13 +1,15 @@
 #include "all.h"
 
 #define ratio 0 //雷的比例
+int line, column;
+char **list;
+char **list_hide;
 
 int digit_number(int);
 
 void game_start() //给出list二维数组
 {
-    int line, column;
-    char **list;
+    
 
     printf("请输入想要游玩的行数与列数\n");
     scanf("%d%d", &line, &column);
@@ -35,12 +37,12 @@ void game_start() //给出list二维数组
         }
     }
 
-    game_output(line, column, list);
+    game_output();
 
     game_middle(line + 2, column + 2, list);
 }
 
-void game_output(int line, int column, char **list)
+void game_output()
 {
     printf("    ");                   // output//写判断语句吗，让其*阵输出对行
     for (int j = 0; j <= column; j++) //第一行 数字行
@@ -110,7 +112,7 @@ int digit_number(int number)
 }
 
 
- void game_middle(int line, int column,char **list)//给出list_hide二维数组
+ void game_middle(int line,int column,char **list)//给出list_hide二维数组
 {
     char **list_hide;
     char **Lanumber_list;
@@ -161,11 +163,11 @@ int digit_number(int number)
         list_hide[landmine_y][landmine_x] = '1';
     }
 
-    Lanumber_list=LAnumber_list(line,column,list_hide);
+    Lanumber_list=LAnumber_list();
     game_end(line-2,column-2,list,list_hide,Lanumber_list);
 }
 
-char** LAnumber_list(int line,int column,char **list_hide)//创建每个格子周围雷的数量的表格
+char** LAnumber_list()//创建每个格子周围雷的数量的表格
 {
     char **Lanumber_list;//未初始化，可能出bug
     for(int i=0;i<=line-1;i++)
