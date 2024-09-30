@@ -1,9 +1,7 @@
 #include "all.h"
 #include "BFS.h"
 
-
-
-void game_end(int line, int column, char **list, char **list_hide,char **Lanumber_list)
+void game_end(int line, int column, char **list, char **list_hide,char **Unlock_list)
 {
     while (1)
     {
@@ -24,7 +22,7 @@ void game_end(int line, int column, char **list, char **list_hide,char **Lanumbe
         
         landmine_around_num=landmine_around_number(x, y, line, column, list_hide);
         list[y - 1][x - 1] = (char)(landmine_around_num + '0');
-        Queue_LAnumber(x, y, line, column, list_hide, list,Lanumber_list);
+        Queue_LAnumber(x, y, line, column, list_hide, list,Unlock_list);
         game_output();
 
         //胜利的判断条件
@@ -77,9 +75,9 @@ int landmine_around_number(int x, int y, int line, int column, char **list_hide)
     return landmine_around_num;
 }
 
-void Queue_LAnumber(int x, int y, int line, int column, char **list_hide, char **list,char **Lanumber_list)
+void Queue_LAnumber(int x, int y, int line, int column, char **list_hide, char **list,char **Unlock_list)
 {
-    int xy[0];
+    int xy[2];
     Queue Q;
     Queue *q=&Q;
     initQueue(q);
@@ -87,7 +85,7 @@ void Queue_LAnumber(int x, int y, int line, int column, char **list_hide, char *
     {
         for (int j = -1; j < 2; j++)
         {
-            if (x + j < 0 || y + i < 0 || x + j >= column || y + i >= line||Lanumber_list[y+i][x+j]!=o)
+            if (x + j < 0 || y + i < 0 || x + j >= column || y + i >= line)//||Unlock_list[y+i][x+j]!=o)
             {
                 continue;
             }

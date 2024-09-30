@@ -1,8 +1,14 @@
-#include"all.h"
+#ifndef BFS_H
+
+#define BFS_H
+#include<stdio.h>
+#include<stdlib.h>
+
+#endif
 
 typedef struct Node
 {
-    int xy[2];
+    int lc[2];
     struct Node* next;
 } Node;// 定义节点结构体
 
@@ -23,11 +29,11 @@ int isEmpty(Queue* q)
     return q->front==NULL;
 }//检查队列是否为空
  
-void enQueue(Queue* q,int* xy)
+void enQueue(Queue* q,int* lc)// 入队
 {
     Node* Newnode = (Node*)malloc(sizeof(Node));
-    Newnode->xy[0]=xy[0];
-    Newnode->xy[1]=xy[1];
+    Newnode->lc[0]=lc[0];
+    Newnode->lc[1]=lc[1];
     Newnode->next=NULL;
 
     if(q->front==NULL)
@@ -41,10 +47,11 @@ void enQueue(Queue* q,int* xy)
     }
 }
 
-int* deQueue(Queue *q)
+int* deQueue(Queue *q)// 出队
 {
-    int *xy;
-    xy=q->front->xy;
+    int *lc = (int *)malloc(sizeof(int) * 2);
+    lc[0]=q->front->lc[0];
+    lc[1] = q->front->lc[1];
     Node* freen=q->front;
     q->front=q->front->next;
     if(q->front==NULL)
@@ -52,5 +59,5 @@ int* deQueue(Queue *q)
         q->rear=NULL;
     }
     free(freen);
-    return xy;
+    return lc;
 }

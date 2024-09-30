@@ -4,13 +4,12 @@
 int line, column;
 char **list;
 char **list_hide;
+int **unlock_list;
 
 int digit_number(int);
 
 void game_start() //给出list二维数组
 {
-    
-
     printf("请输入想要游玩的行数与列数\n");
     scanf("%d%d", &line, &column);
 
@@ -42,7 +41,7 @@ void game_start() //给出list二维数组
     game_middle(line + 2, column + 2, list);
 }
 
-void game_output()
+void game_output() 打印list
 {
     printf("    ");                   // output//写判断语句吗，让其*阵输出对行
     for (int j = 0; j <= column; j++) //第一行 数字行
@@ -111,11 +110,9 @@ int digit_number(int number)
     return digit;
 }
 
-
- void game_middle(int line,int column,char **list)//给出list_hide二维数组
+void game_middle(int line, int column, char **list) //给出list_hide二维数组
 {
-    char **list_hide;
-    char **Lanumber_list;
+
     list_hide = (char **)malloc(line * sizeof(char *));
     if (list_hide == NULL)
     {
@@ -163,20 +160,56 @@ int digit_number(int number)
         list_hide[landmine_y][landmine_x] = '1';
     }
 
-    Lanumber_list=LAnumber_list();
-    game_end(line-2,column-2,list,list_hide,Lanumber_list);
+    unlock_list = Unlock_list();
+    game_end(line - 2, column - 2, list, list_hide, unlock_list);
 }
 
-char** LAnumber_list()//创建每个格子周围雷的数量的表格
+char **Unlock_list(void) //记得修改使用Unlock_list的返回值的形参列表
 {
-    char **Lanumber_list;//未初始化，可能出bug
-    for(int i=0;i<=line-1;i++)
+    unlock_list = (char **)malloc(line * sizeof(char *));
+    if (list == NULL)
     {
-        for(int j=0;j<=column-1;j++)
+        perror("list二维数组获取失败");
+    }
+    for (int i = 0; i < line; i++)
+    {
+        [i] = (char *)malloc(column * sizeof(char));
+        if (list[i] == NULL)
         {
-            int number=landmine_around_number(i+1,j+1,line-2,column-2,list_hide);
-            Lanumber_list[i+1][j+1]=(char)(number+'0');
+            perror("list[i]一维数组获取失败");
+            i--;
         }
     }
-    return Lanumber_list;
+
+    for (int i = 0; i < line; i++) // input
+    {
+        for (int j = 0; j < column; j++)
+        {
+            list[i][j] = '*';
+        }
+    }
+}
+{
+    unlock_list = (char **)malloc(line * sizeof(char *));
+    if (list == NULL)
+    {
+        perror("list二维数组获取失败");
+    }
+    for (int i = 0; i < line; i++)
+    {
+        [i] = (char *)malloc(column * sizeof(char));
+        if (list[i] == NULL)
+        {
+            perror("list[i]一维数组获取失败");
+            i--;
+        }
+    }
+
+    for (int i = 0; i < line; i++) // input
+    {
+        for (int j = 0; j < column; j++)
+        {
+            list[i][j] = '*';
+        }
+    }
 }
